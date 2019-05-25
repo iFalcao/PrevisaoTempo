@@ -1,7 +1,9 @@
 ﻿using APIPrevisaoTempo.WebApi.Data;
 using APIPrevisaoTempo.WebApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace APIPrevisaoTempo.WebApi.Repositories
 {
@@ -19,6 +21,11 @@ namespace APIPrevisaoTempo.WebApi.Repositories
             _context.Cities.Add(city);
             _context.SaveChanges();
             return city;
+        }
+
+        public IQueryable<City> Where(Expression<Func<City, bool>> predicate)
+        {
+            return _context.Cities.Where(predicate);
         }
 
         public List<City> SelectAll()
