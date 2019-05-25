@@ -44,9 +44,16 @@ namespace APIPrevisaoTempo.External.OpenWeatherProxy.Services
         /// <returns></returns>
         private string PerformQuery(string requestUrl)
         {
-            HttpResponseMessage response = Client.GetAsync(requestUrl).Result;
-            response.EnsureSuccessStatusCode();
-            return response.Content.ReadAsStringAsync().Result;
+            try
+            {
+                HttpResponseMessage response = Client.GetAsync(requestUrl).Result;
+                response.EnsureSuccessStatusCode();
+                return response.Content.ReadAsStringAsync().Result;
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new ArgumentException("Não foi possível processar a requisição. Verifique os dados informados e tente novamente.", ex);
+            }
         }
     }
 }
