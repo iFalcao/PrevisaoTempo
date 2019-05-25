@@ -1,9 +1,7 @@
-﻿using System;
+﻿using APIPrevisaoTempo.WebApi.Data;
+using APIPrevisaoTempo.WebApi.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using APIPrevisaoTempo.WebApi.Data;
-using APIPrevisaoTempo.WebApi.Models;
 
 namespace APIPrevisaoTempo.WebApi.Repositories
 {
