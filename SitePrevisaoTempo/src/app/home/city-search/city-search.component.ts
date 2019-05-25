@@ -9,7 +9,7 @@ import { AlertifyService } from 'src/app/_services/alertify/alertify.service';
   styleUrls: ['./city-search.component.css']
 })
 export class CitySearchComponent implements OnInit {
-  foundCities: any = [];
+  foundCities: City[] = [];
   model: any = {};
   pesquisaFeita = false;
 
@@ -25,9 +25,9 @@ export class CitySearchComponent implements OnInit {
       return;
     }
     this.weatherService.searchCities(this.model.cityName)
-      .subscribe((cities: any) => {
-        console.log(cities.list);
-        this.foundCities = cities.list;
+      .subscribe((cities: City[]) => {
+        console.log(cities);
+        this.foundCities = cities;
       }, error => {
         console.log(error);
         this.alertify.error(error);

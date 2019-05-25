@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using APIPrevisaoTempo.Common.Objects;
+using System.Linq;
 
 namespace APIPrevisaoTempo.WebApi.Controllers
 {
@@ -52,7 +53,8 @@ namespace APIPrevisaoTempo.WebApi.Controllers
         public ActionResult SearchCities(string cityName)
         {
             FoundCitiesDTO foundCities = this._externalCityService.SearchCitiesByName(cityName);
-            return Ok(foundCities);
+            var convertedCities = foundCities.list.Select(foundCity => _mapper.Map<CityDTO>(foundCity));
+            return Ok(convertedCities);
         }
 
     }

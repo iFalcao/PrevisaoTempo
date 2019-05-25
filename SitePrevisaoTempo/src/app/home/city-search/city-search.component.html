@@ -1,6 +1,6 @@
 <div class="card text-center">
   <div class="card-header">
-    Pesquisar Cidades
+    Pesquisar & Cadastrar Cidades
   </div>
   <div class="card-body">
     <form #searchCityForm (ngSubmit)="this.searchCities()" class="form-inline">
@@ -20,12 +20,12 @@
       </div>
     </form>
 
-    <div *ngFor="let foundCity of this.foundCities">
-      {{foundCity.name}}, {{foundCity.sys.country}}
+    <div class="mt-2" *ngFor="let foundCity of this.foundCities">
+      {{foundCity.name}}, {{foundCity.country}}
       <br>
-      Latitude: {{foundCity.coord.lat}}, Longitude: {{foundCity.coord.lon}}
+      Latitude: {{foundCity.latitude}}, Longitude: {{foundCity.longitude}}
       <br>
-      CustomCode: {{foundCity.id}}
+      CustomCode: {{foundCity.customCode}}
       <hr>
     </div>
     <div *ngIf="this.foundCities.length == 0 && this.pesquisaFeita">

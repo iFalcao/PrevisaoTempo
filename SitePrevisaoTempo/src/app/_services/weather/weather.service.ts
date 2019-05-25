@@ -11,7 +11,8 @@ export class WeatherService {
   baseUrl = environment.baseUrl + 'cities';
   constructor(private http: HttpClient) { }
 
-  searchCities(cityName: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl + '/search/' + cityName);
+  searchCities(cityName: string): Observable<City[]> {
+    return this.http
+      .get<City[]>(this.baseUrl + '/search/' + cityName);
   }
 }
