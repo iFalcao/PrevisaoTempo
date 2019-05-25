@@ -1,26 +1,33 @@
-<div class="card w-50 card-city" *ngFor="let city of this.cities">
+<div class="card text-center">
+  <div class="card-header">
+    Cidades Cadastradas
+  </div>
   <div class="card-body">
-    <h5 class="card-title">
-      {{city.name}}{{city.country ? ', ' + city.country : ''}}
-    </h5>
-    <p class="card-text">
-      <span *ngIf="city.latitude" class="geo-information">
-        <i class="fa fa-map-marker"></i>
-        Latitude:
-        <span class="geo-information__location">
-          {{city.latitude}}
-        </span>
-      </span>
-      <span *ngIf="city.longitude" class="geo-information">
-        <i class="fa fa-map-marker"></i>
-        Longitude:
-        <span class="geo-information__location">
-          {{city.longitude}}
-        </span>
-      </span>
-    </p>
-    <a href="#" class="btn btn-primary">
-      PREVISÃO <i class="fa fa-arrow-circle-right"></i>
-    </a>
+    <div class="card w-50 card-city" *ngFor="let city of this.cities">
+      <div class="card-body">
+        <h5 class="card-title">
+          {{city.name}}{{city.country ? ', ' + city.country : ''}}
+        </h5>
+        <p class="card-text">
+          <span *ngIf="city.latitude" class="geo-information">
+            <i class="fa fa-map-marker"></i>
+            Latitude:
+            <span class="geo-information__location">
+              {{city.latitude}}
+            </span>
+          </span>
+          <span *ngIf="city.longitude" class="geo-information">
+            <i class="fa fa-map-marker"></i>
+            Longitude:
+            <span class="geo-information__location">
+              {{city.longitude}}
+            </span>
+          </span>
+        </p>
+        <a href="#" class="btn btn-primary">
+          PREVISÃO <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
   </div>
 </div>

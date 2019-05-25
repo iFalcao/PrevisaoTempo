@@ -10,13 +10,15 @@ import { CityService } from './_services/city/city.service';
 import { CityListComponent } from './home/city-list/city-list.component';
 import { WeatherService } from './_services/weather/weather.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CitySearchComponent } from './home/city-search/city-search.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       HomeComponent,
       HeaderComponent,
-      CityListComponent
+      CityListComponent,
+      CitySearchComponent
    ],
    imports: [
       BrowserModule,
