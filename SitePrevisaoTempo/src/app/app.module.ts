@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CitySearchComponent } from './home/city-search/city-search.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { ForecastComponent } from './forecast/forecast.component';
 
 @NgModule({
    declarations: [
@@ -20,7 +21,8 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
       HomeComponent,
       HeaderComponent,
       CityListComponent,
-      CitySearchComponent
+      CitySearchComponent,
+      ForecastComponent
    ],
    imports: [
       BrowserModule,

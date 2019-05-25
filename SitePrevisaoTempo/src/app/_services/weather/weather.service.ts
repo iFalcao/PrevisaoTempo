@@ -15,4 +15,9 @@ export class WeatherService {
     return this.http
       .get<City[]>(this.baseUrl + '/search/' + cityName);
   }
+
+  getForecast(cityCustomCode: string): Observable<any> {
+    return this.http
+      .get<any>(this.baseUrl + '/forecast/' + cityCustomCode);
+  }
 }
