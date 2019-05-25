@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { City } from 'src/app/_models/city';
 import { WeatherService } from 'src/app/_services/weather/weather.service';
 import { AlertifyService } from 'src/app/_services/alertify/alertify.service';
+import { CityService } from 'src/app/_services/city/city.service';
 
 @Component({
   selector: 'app-city-search',
@@ -13,7 +14,7 @@ export class CitySearchComponent implements OnInit {
   model: any = {};
   pesquisaFeita = false;
 
-  constructor(private weatherService: WeatherService, private alertify: AlertifyService) { }
+  constructor(private weatherService: WeatherService, private alertify: AlertifyService, private cityService: CityService) { }
 
   ngOnInit() {
   }
@@ -34,5 +35,13 @@ export class CitySearchComponent implements OnInit {
       }, () => {
         this.pesquisaFeita = true;
       });
+  }
+
+  saveCity(newCity: City): void {
+    this.cityService.insertCity(newCity).subscribe(() => {
+      this.alertify.success('Cidade cadastrada com sucesso.');
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 }

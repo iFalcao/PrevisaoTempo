@@ -20,16 +20,24 @@
       </div>
     </form>
 
-    <div class="mt-2" *ngFor="let foundCity of this.foundCities">
-      {{foundCity.name}}, {{foundCity.country}}
-      <br>
-      Latitude: {{foundCity.latitude}}, Longitude: {{foundCity.longitude}}
-      <br>
-      CustomCode: {{foundCity.customCode}}
-      <hr>
-    </div>
-    <div *ngIf="this.foundCities.length == 0 && this.pesquisaFeita">
-      <span>Não foi possível encontrar a cidade informada.</span>
+
+    <div class="mt-2">
+      <div class="card text-center">
+        <div class="card-body" *ngIf="this.foundCities.length == 0 && this.pesquisaFeita">
+          <span>Não foi possível encontrar a cidade informada.</span>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let foundCity of this.foundCities">
+            <span>{{foundCity.name}}, {{foundCity.country}}</span>
+            <span class="mx-2 mb-3">
+              <img [src]="'http://openweathermap.org/images/flags/' + foundCity.country.toLowerCase() + '.png'" />
+            </span>
+            <button type="submit" class="btn btn-success ml-2" (click)="saveCity(foundCity)">
+              Cadastrar <i class="fa fa-plus"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

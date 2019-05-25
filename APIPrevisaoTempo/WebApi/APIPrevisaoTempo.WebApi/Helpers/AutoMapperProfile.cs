@@ -31,6 +31,12 @@ namespace APIPrevisaoTempo.WebApi.Helpers
                 {
                     opt.MapFrom(src => src.sys.country);
                 });
+
+            CreateMap<CityDTO, City>()
+                .ForMember(dest => dest.Id, opt => 
+                {
+                    opt.Ignore();
+                });
         }
     }
 }

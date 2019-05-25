@@ -16,4 +16,8 @@ export class CityService {
     return this.http.get<City[]>(this.baseUrl);
   }
 
+  insertCity(newCity: City): Observable<object> {
+    return this.http.post(this.baseUrl, newCity);
+  }
+
 }
