@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { CityService } from './_services/city/city.service';
 import { CityListComponent } from './home/city-list/city-list.component';
 import { WeatherService } from './_services/weather/weather.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
    declarations: [
@@ -19,7 +20,8 @@ import { WeatherService } from './_services/weather/weather.service';
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule
+      AppRoutingModule,
+      HttpClientModule
    ],
    providers: [
       AlertifyService,

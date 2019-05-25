@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { City } from 'src/app/_models/city';
 import { CityService } from 'src/app/_services/city/city.service';
+import { AlertifyService } from 'src/app/_services/alertify/alertify.service';
 
 @Component({
   selector: 'app-city-list',
@@ -10,16 +11,15 @@ import { CityService } from 'src/app/_services/city/city.service';
 export class CityListComponent implements OnInit {
   cities: City[] = [];
 
-  constructor(private cityService: CityService) { }
+  constructor(private cityService: CityService, private alertify: AlertifyService) { }
 
   ngOnInit() {
-    this.cities.push({
-      name: 'Salvador',
-      customCode: 123456,
-      country: 'BR',
-      latitude: -45.0053,
-      longitude: 55.0053
-    });
+    this.cityService.getAllCities()
+      .subscribe((cities: City[]) => {
+        this.cities = cities;
+      }, error => {
+        this.alertify.error(error);
+      });
   }
 
 }
