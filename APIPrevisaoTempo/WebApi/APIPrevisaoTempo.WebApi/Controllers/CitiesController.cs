@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using APIPrevisaoTempo.WebApi.DTOs;
+﻿using APIPrevisaoTempo.WebApi.DTOs;
+using APIPrevisaoTempo.WebApi.Models;
+using APIPrevisaoTempo.WebApi.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace APIPrevisaoTempo.WebApi.Controllers
 {
@@ -11,18 +11,28 @@ namespace APIPrevisaoTempo.WebApi.Controllers
     [ApiController]
     public class CitiesController : ControllerBase
     {
+        public readonly ICityService _cityService;
+        private readonly IMapper _mapper;
+
+        public CitiesController(ICityService cityService, IMapper mapper)
+        {
+            this._cityService = cityService;
+            _mapper = mapper;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<CityDTO>> Get()
         {
-            return Ok();
+            return Ok(this._cityService.RecoverAllCities());
         }
 
         // POST api/values
         [HttpPost]
         public ActionResult Post(CityDTO newCity)
         {
-            return StatusCode(201);
+            var insertedCity = this._cityService.CreateCity(_mapper.Map<City>(newCity));
+            return StatusCode(201, _mapper.Map<CityDTO>(insertedCity));
         }
     }
 }
