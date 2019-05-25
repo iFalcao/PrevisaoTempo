@@ -38,8 +38,9 @@ export class CitySearchComponent implements OnInit {
   }
 
   saveCity(newCity: City): void {
-    this.cityService.insertCity(newCity).subscribe(() => {
+    this.cityService.insertCity(newCity).subscribe((insertedCity: City) => {
       this.alertify.success('Cidade cadastrada com sucesso.');
+      this.cityService.noticeCityInsertion(insertedCity);
     }, error => {
       this.alertify.error(error);
     });

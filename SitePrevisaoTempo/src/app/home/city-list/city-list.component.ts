@@ -20,6 +20,11 @@ export class CityListComponent implements OnInit {
       }, error => {
         this.alertify.error(error);
       });
+
+    this.cityService.cityCreated$
+      .subscribe((insertedCity: City) => {
+        this.cities.push(insertedCity);
+      });
   }
 
 }
