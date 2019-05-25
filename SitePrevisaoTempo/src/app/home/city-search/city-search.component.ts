@@ -27,10 +27,8 @@ export class CitySearchComponent implements OnInit {
     }
     this.weatherService.searchCities(this.model.cityName)
       .subscribe((cities: City[]) => {
-        console.log(cities);
         this.foundCities = cities;
       }, error => {
-        console.log(error);
         this.alertify.error(error);
       }, () => {
         this.pesquisaFeita = true;

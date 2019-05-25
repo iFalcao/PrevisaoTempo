@@ -12,6 +12,7 @@ import { WeatherService } from './_services/weather/weather.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CitySearchComponent } from './home/city-search/city-search.component';
 import { FormsModule } from '@angular/forms';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 @NgModule({
    declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
    providers: [
       AlertifyService,
       CityService,
-      WeatherService
+      WeatherService,
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent
