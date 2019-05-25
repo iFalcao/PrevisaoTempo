@@ -1,0 +1,11 @@
+$font-alert: purple;
+
+.card-city {
+    .geo-information {
+        display: block;
+
+        .geo-information__location {
+            color: $font-alert;
+        }
+    }
+}

@@ -14,8 +14,11 @@ export class CityListComponent implements OnInit {
 
   ngOnInit() {
     this.cities.push({
-      name: 'salvador',
-      customCode: 123456
+      name: 'Salvador',
+      customCode: 123456,
+      country: 'BR',
+      latitude: -45.0053,
+      longitude: 55.0053
     });
   }
 
