@@ -5,6 +5,7 @@ using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using APIPrevisaoTempo.Common.Objects;
 
 namespace APIPrevisaoTempo.WebApi.Controllers
 {
@@ -42,7 +43,7 @@ namespace APIPrevisaoTempo.WebApi.Controllers
         [Route("forecast/{customCode}")]
         public ActionResult GetForecast(string customCode)
         {
-            var cityForecastDTO = this._externalCityService.GetCityForecast(customCode);
+            CityForecastDTO cityForecastDTO = this._externalCityService.GetCityForecast(customCode);
             return Ok(cityForecastDTO);
         }
 
@@ -50,7 +51,7 @@ namespace APIPrevisaoTempo.WebApi.Controllers
         [Route("search/{cityName}")]
         public ActionResult SearchCities(string cityName)
         {
-            var foundCities = this._externalCityService.SearchCitiesByName(cityName);
+            FoundCitiesDTO foundCities = this._externalCityService.SearchCitiesByName(cityName);
             return Ok(foundCities);
         }
 

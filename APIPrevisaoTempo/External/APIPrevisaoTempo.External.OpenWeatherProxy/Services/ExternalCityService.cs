@@ -1,5 +1,7 @@
-﻿using APIPrevisaoTempo.External.OpenWeatherProxy.Configuration;
+﻿using APIPrevisaoTempo.Common.Objects;
+using APIPrevisaoTempo.External.OpenWeatherProxy.Configuration;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -19,20 +21,20 @@ namespace APIPrevisaoTempo.External.OpenWeatherProxy.Services
         /// </summary>
         /// <param name="cityCustomCode">City's code on OpenWeatherApi</param>
         /// <returns></returns>
-        public object GetCityForecast(string cityCustomCode)
+        public CityForecastDTO GetCityForecast(string cityCustomCode)
         {
             string requestUrl = base.Configuration.BaseUrl 
                 + $"forecast?id={cityCustomCode}&apiKey={base.Configuration.ApiKey}";
             string jsonResult = this.PerformQuery(requestUrl);
-            return jsonResult;
+            return JsonConvert.DeserializeObject<CityForecastDTO>(jsonResult);
         }
 
-        public object SearchCitiesByName(string cityName)
+        public FoundCitiesDTO SearchCitiesByName(string cityName)
         {
             string requestUrl = base.Configuration.BaseUrl 
                 + $"find?q={cityName}&apiKey={base.Configuration.ApiKey}";
             string jsonResult = this.PerformQuery(requestUrl);
-            return jsonResult;
+            return JsonConvert.DeserializeObject<FoundCitiesDTO>(jsonResult);
         }
 
         /// <summary>

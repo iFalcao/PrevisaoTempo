@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\APIPrevisaoTempo.Common\APIPrevisaoTempo.Common.csproj" />
     <ProjectReference Include="..\..\External\APIPrevisaoTempo.External.OpenWeatherProxy\APIPrevisaoTempo.External.OpenWeatherProxy.csproj" />
   </ItemGroup>
 
