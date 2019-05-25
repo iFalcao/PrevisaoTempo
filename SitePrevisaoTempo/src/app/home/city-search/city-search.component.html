@@ -3,14 +3,14 @@
     Pesquisar Cidades
   </div>
   <div class="card-body">
-    <form class="form-inline">
+    <form #searchCityForm (ngSubmit)="this.searchCities()" class="form-inline">
       <div class="form-group mx-auto d-block w-100">
         <label for="cityName" class="sr-only">
           Nome da Cidade
         </label>
         <div class="input-group">
-          <input type="text" class="form-control" id="cityName"
-            placeholder="Digite o nome da cidade que deseja pesquisar">
+          <input type="text" class="form-control" id="cityName" name="cityName"
+            placeholder="Digite o nome da cidade que deseja pesquisar" [(ngModel)]="this.model.cityName">
           <div class="input-group-append">
             <button type="submit" class="btn btn-primary mb-2">
               Buscar <i class="fa fa-search"></i>
@@ -20,8 +20,16 @@
       </div>
     </form>
 
-    <div *ngFor="let foundCity of foundCities">
-
+    <div *ngFor="let foundCity of this.foundCities">
+      {{foundCity.name}}, {{foundCity.sys.country}}
+      <br>
+      Latitude: {{foundCity.coord.lat}}, Longitude: {{foundCity.coord.lon}}
+      <br>
+      CustomCode: {{foundCity.id}}
+      <hr>
+    </div>
+    <div *ngIf="this.foundCities.length == 0 && this.pesquisaFeita">
+      <span>Não foi possível encontrar a cidade informada.</span>
     </div>
   </div>
 </div>
