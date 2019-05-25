@@ -32,6 +32,7 @@ namespace APIPrevisaoTempo.WebApi
                 x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")
             ));
 
+            services.AddCors();
             services.Configure<OpenWeatherApiConfiguration>(Configuration.GetSection("OpenWeatherApiConfiguration"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICityService, CityService>();
@@ -51,7 +52,7 @@ namespace APIPrevisaoTempo.WebApi
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
             app.UseMvc();
         }
