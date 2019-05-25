@@ -1,12 +1,14 @@
 ﻿using APIPrevisaoTempo.WebApi.Data;
 using APIPrevisaoTempo.WebApi.Repositories;
 using APIPrevisaoTempo.WebApi.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace APIPrevisaoTempo.WebApi
 {
@@ -28,9 +30,9 @@ namespace APIPrevisaoTempo.WebApi
                 x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")
             ));
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<ICityRepository, CityRepository>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
