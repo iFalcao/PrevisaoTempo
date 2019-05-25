@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { CityService } from './_services/city/city.service';
 import { CityListComponent } from './home/city-list/city-list.component';
+import { WeatherService } from './_services/weather/weather.service';
 
 @NgModule({
    declarations: [
@@ -22,7 +23,8 @@ import { CityListComponent } from './home/city-list/city-list.component';
    ],
    providers: [
       AlertifyService,
-      CityService
+      CityService,
+      WeatherService
    ],
    bootstrap: [
       AppComponent
