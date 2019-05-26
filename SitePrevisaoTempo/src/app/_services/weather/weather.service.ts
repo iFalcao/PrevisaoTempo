@@ -9,15 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class WeatherService {
   baseUrl = environment.baseUrl + 'cities';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   searchCities(cityName: string): Observable<City[]> {
-    return this.http
-      .get<City[]>(this.baseUrl + '/search/' + cityName);
+    return this.http.get<City[]>(`${this.baseUrl}/search/${cityName}`);
   }
 
   getForecast(cityCustomCode: string): Observable<any> {
-    return this.http
-      .get<any>(this.baseUrl + '/forecast/' + cityCustomCode);
+    return this.http.get<any>(`${this.baseUrl}/forecast/${cityCustomCode}`);
   }
 }
