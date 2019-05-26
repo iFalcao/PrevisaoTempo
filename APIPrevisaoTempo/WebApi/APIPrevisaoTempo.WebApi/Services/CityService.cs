@@ -27,7 +27,7 @@ namespace APIPrevisaoTempo.WebApi.Services
         public City CreateCity(City city)
         {
             if (!this.CityExistsOnExternalApi(city))
-                throw new ArgumentException("A cidade informada não está apta para recuperar informações sobre o tempo.");
+                throw new ArgumentException("A cidade informada não está apta para recuperar informações sobre o clima.");
             if (!this.CityIsUnique(city))
                 throw new ArgumentException("A cidade informada já foi cadastrada.");
             return this._repository.Insert(city);
@@ -37,7 +37,7 @@ namespace APIPrevisaoTempo.WebApi.Services
         /// Retrieve all cities on the DataSource
         /// </summary>
         /// <returns></returns>
-        public List<City> RecoverAllCities()
+        public List<City> RetrieveAllCities()
         {
             return this._repository.SelectAll();
         }

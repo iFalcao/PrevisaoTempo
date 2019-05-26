@@ -30,7 +30,7 @@ namespace APIPrevisaoTempo.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CityDTO>> Get()
         {
-            return Ok(_mapper.Map<IEnumerable<CityDTO>>(this._cityService.RecoverAllCities()));
+            return Ok(_mapper.Map<IEnumerable<CityDTO>>(this._cityService.RetrieveAllCities()));
         }
 
         // POST api/cities

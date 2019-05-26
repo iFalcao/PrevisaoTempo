@@ -12,6 +12,7 @@ using System.Linq;
 using APIPrevisaoTempo.WebApi.DTOs;
 using System.Net;
 using APIPrevisaoTempo.Common.Objects;
+using System;
 
 namespace APIPrevisaoTempo.UnitTests.Controllers
 {
@@ -41,7 +42,7 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
         public void Get_WhenCalled_ReturnsOkResultAndCityDTOList()
         {
             // Arrange
-            this._cityServiceMock.Setup(svc => svc.RecoverAllCities()).Returns(new List<City>
+            this._cityServiceMock.Setup(svc => svc.RetrieveAllCities()).Returns(new List<City>
             {
                 _cityMock
             });
@@ -60,7 +61,7 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
         }
 
         [Fact]
-        public void Post_WhenCalled_ReturnsStatusCreatedAndInsertedCityDTO()
+        public void Post_WhenCalledRight_ReturnsStatusCreatedAndInsertedCityDTO()
         {
             // Arrange
             var mockedCityToDTO = _serviceProvider.GetService<IMapper>().Map<CityDTO>(_cityMock);
