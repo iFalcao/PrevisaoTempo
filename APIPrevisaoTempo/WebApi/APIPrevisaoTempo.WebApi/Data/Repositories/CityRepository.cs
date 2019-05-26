@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace APIPrevisaoTempo.WebApi.Repositories
+namespace APIPrevisaoTempo.WebApi.Data.Repositories
 {
     public class CityRepository : ICityRepository
     {

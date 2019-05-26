@@ -9,7 +9,7 @@ using System.Text;
 
 namespace APIPrevisaoTempo.External.OpenWeatherProxy.Services
 {
-    public class ExternalCityService : BaseService
+    public class ExternalCityService : BaseService, IExternalCityService
     {
         public ExternalCityService(IOptions<OpenWeatherApiConfiguration> customConfiguration)
         {

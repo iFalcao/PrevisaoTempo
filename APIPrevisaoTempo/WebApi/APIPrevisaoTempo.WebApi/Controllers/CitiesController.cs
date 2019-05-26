@@ -16,9 +16,9 @@ namespace APIPrevisaoTempo.WebApi.Controllers
     {
         private readonly ICityService _cityService;
         private readonly IMapper _mapper;
-        private readonly ExternalCityService _externalCityService;
+        private readonly IExternalCityService _externalCityService;
 
-        public CitiesController(ICityService cityService, IMapper mapper, ExternalCityService externalCityService)
+        public CitiesController(ICityService cityService, IMapper mapper, IExternalCityService externalCityService)
         {
             this._cityService = cityService;
             this._mapper = mapper;

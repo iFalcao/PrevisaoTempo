@@ -1,8 +1,7 @@
 ﻿using APIPrevisaoTempo.External.OpenWeatherProxy.Configuration;
 using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
 using APIPrevisaoTempo.WebApi.Data;
-using APIPrevisaoTempo.WebApi.Helpers;
-using APIPrevisaoTempo.WebApi.Repositories;
+using APIPrevisaoTempo.WebApi.Data.Repositories;
 using APIPrevisaoTempo.WebApi.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -41,7 +40,7 @@ namespace APIPrevisaoTempo.WebApi
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<ICityRepository, CityRepository>();
-            services.AddScoped<ExternalCityService>();
+            services.AddScoped<IExternalCityService, ExternalCityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

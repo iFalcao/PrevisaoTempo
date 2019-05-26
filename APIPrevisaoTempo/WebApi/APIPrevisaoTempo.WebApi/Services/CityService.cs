@@ -1,6 +1,6 @@
 ﻿using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
 using APIPrevisaoTempo.WebApi.Models;
-using APIPrevisaoTempo.WebApi.Repositories;
+using APIPrevisaoTempo.WebApi.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,10 @@ namespace APIPrevisaoTempo.WebApi.Services
     public class CityService : ICityService
     {
         public readonly ICityRepository _repository;
-        public readonly ExternalCityService _externalCityService;
+        public readonly IExternalCityService _externalCityService;
 
 
-        public CityService(ICityRepository repository, ExternalCityService externalCityService)
+        public CityService(ICityRepository repository, IExternalCityService externalCityService)
         {
             this._repository = repository;
             this._externalCityService = externalCityService;
