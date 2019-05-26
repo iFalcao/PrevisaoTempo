@@ -154,7 +154,8 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
 
 
 
-        private CitiesController GenerateCitiesController(Mock<ICityService> mockCityService = null, Mock<IExternalCityService> mockExternalService = null)
+        private CitiesController GenerateCitiesController(Mock<ICityService> mockCityService = null, 
+            Mock<IExternalCityService> mockExternalService = null)
         {
             return new CitiesController(mockCityService?.Object ?? _cityServiceMock.Object,
                    _serviceProvider.GetService<IMapper>(),
