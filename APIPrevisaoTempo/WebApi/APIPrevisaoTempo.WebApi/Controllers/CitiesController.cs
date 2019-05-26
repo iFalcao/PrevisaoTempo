@@ -30,14 +30,16 @@ namespace APIPrevisaoTempo.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CityDTO>> Get()
         {
-            return Ok(this._cityService.RecoverAllCities());
+            return Ok(_mapper.Map<IEnumerable<CityDTO>>(this._cityService.RecoverAllCities()));
         }
 
         // POST api/cities
         [HttpPost]
         public ActionResult Post(CityDTO newCity)
         {
-            var insertedCity = this._cityService.CreateCity(_mapper.Map<City>(newCity));
+            var mappedCityDomain = _mapper.Map<City>(newCity);
+            var insertedCity = this._cityService.CreateCity(mappedCityDomain);
+
             return StatusCode(201, _mapper.Map<CityDTO>(insertedCity));
         }
 

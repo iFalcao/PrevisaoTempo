@@ -37,6 +37,12 @@ namespace APIPrevisaoTempo.WebApi.Helpers
                 {
                     opt.Ignore();
                 });
+
+            CreateMap<City, CityDTO>()
+                .ForSourceMember(src => src.Id, opt =>
+                {
+                    opt.DoNotValidate();
+                });
         }
     }
 }
