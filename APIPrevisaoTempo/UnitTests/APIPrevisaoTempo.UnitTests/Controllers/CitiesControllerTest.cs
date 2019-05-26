@@ -11,6 +11,7 @@ using APIPrevisaoTempo.WebApi.Models;
 using System.Linq;
 using APIPrevisaoTempo.WebApi.DTOs;
 using System.Net;
+using APIPrevisaoTempo.Common.Objects;
 
 namespace APIPrevisaoTempo.UnitTests.Controllers
 {
@@ -44,35 +45,35 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
             {
                 _cityMock
             });
-            CitiesController _controller = this.GenerateCitiesController();
+            CitiesController controller = this.GenerateCitiesController();
 
             // Act
-            var okResult = _controller.Get();
+            var okResult = controller.Get();
             var returnedList = ((OkObjectResult)okResult.Result).Value as List<CityDTO>;
 
             // Assert
+            Assert.IsType<OkObjectResult>(okResult.Result);
             Assert.True(returnedList.Count == 1);
             Assert.Collection(returnedList, cityDto =>
                 Assert.True(cityDto.Name == "Salvador")
             );
-            Assert.IsType<OkObjectResult>(okResult.Result);
         }
 
         [Fact]
-        public void Post_WhenCalled_ReturnsOkResultAndInsertedCityDTO()
+        public void Post_WhenCalled_ReturnsStatusCreatedAndInsertedCityDTO()
         {
             // Arrange
             var mockedCityToDTO = _serviceProvider.GetService<IMapper>().Map<CityDTO>(_cityMock);
 
-            this._cityServiceMock.Setup(svc => svc.CreateCity(It.Is<City>( 
+            this._cityServiceMock.Setup(svc => svc.CreateCity(It.Is<City>(
                 (cty) => cty.Id == 0
-                         && cty.Name == "Salvador" 
+                         && cty.Name == "Salvador"
                          && cty.CustomCode == "43534"
             ))).Returns(_cityMock);
-            CitiesController _controller = this.GenerateCitiesController();
+            CitiesController controller = this.GenerateCitiesController();
 
             // Act
-            var objectResult = (ObjectResult) _controller.Post(mockedCityToDTO);
+            var objectResult = (ObjectResult)controller.Post(mockedCityToDTO);
             var returnedCity = objectResult.Value as CityDTO;
 
             // Assert
@@ -81,6 +82,59 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
             Assert.Equal("43534", returnedCity.CustomCode);
             Assert.Equal("BR", returnedCity.Country);
         }
+
+        [Fact]
+        public void SearchCities_WhenCalledWithLessThan3CharactersString_ReturnsBadRequest()
+        {
+            // Arrange 
+            var controller = this.GenerateCitiesController();
+
+            // Act
+            var badRequestResult = controller.SearchCities("ab");
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(badRequestResult);
+            Assert.Equal(400, (int)(badRequestResult as BadRequestObjectResult).StatusCode);
+        }
+
+        [Theory]
+        [InlineData("Salvador")]
+        [InlineData("São Paulo")]
+        [InlineData("Rio de Janeiro")]
+        public void SearchCities_WhenCalledRight_ReturnsListCityDTO(string cityName)
+        {
+            // Arrange 
+            var listFoundCityDto = new List<FoundCityDTO> {
+                new FoundCityDTO
+                {
+                    name = cityName,
+                    id = 363563546
+                },
+                new FoundCityDTO
+                {
+                    name = "Outro nome estranho não deve ser retornado",
+                    id = 123456
+                }
+            };
+            this._externalServiceMock.Setup(svc => svc.SearchCitiesByName(It.Is<string>(q =>
+                q == cityName))).Returns(new FoundCitiesDTO
+                {
+                    list = listFoundCityDto.Where(cty => cty.name == cityName).ToList()
+                });
+            var controller = this.GenerateCitiesController();
+
+            // Act
+            var okResult = controller.SearchCities(cityName);
+            var foundCitiesDTO = (okResult as OkObjectResult).Value as List<CityDTO>;
+
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult);
+            Assert.True(foundCitiesDTO.Count == 1);
+            Assert.All(foundCitiesDTO, foundCityDto =>
+                Assert.Equal(cityName, foundCityDto.Name)
+            );
+        }
+
 
 
         private CitiesController GenerateCitiesController(Mock<ICityService> mockCityService = null, Mock<IExternalCityService> mockExternalService = null)

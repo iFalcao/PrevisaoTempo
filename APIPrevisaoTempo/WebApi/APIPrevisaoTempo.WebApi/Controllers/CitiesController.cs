@@ -58,7 +58,9 @@ namespace APIPrevisaoTempo.WebApi.Controllers
             if (cityName.Length < 3)
                 return BadRequest(new ArgumentException("O nome da cidade deve ter no mínimo 3 caracteres."));
             FoundCitiesDTO foundCities = this._externalCityService.SearchCitiesByName(cityName);
-            var convertedCities = foundCities.list.Select(foundCity => _mapper.Map<CityDTO>(foundCity));
+            var convertedCities = foundCities.list
+                .Select(foundCity => _mapper.Map<CityDTO>(foundCity))
+                .ToList();
             return Ok(convertedCities);
         }
 
