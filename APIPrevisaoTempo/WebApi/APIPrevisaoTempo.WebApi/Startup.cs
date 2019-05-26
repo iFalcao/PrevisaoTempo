@@ -2,6 +2,7 @@
 using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
 using APIPrevisaoTempo.WebApi.Data;
 using APIPrevisaoTempo.WebApi.Data.Repositories;
+using APIPrevisaoTempo.WebApi.Helpers;
 using APIPrevisaoTempo.WebApi.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -46,26 +47,13 @@ namespace APIPrevisaoTempo.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
+            if (!env.IsDevelopment())
+            { 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-                app.UseExceptionHandler(builder => {
-                    builder.Run(async context => {
-                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-                        var error = context.Features.Get<IExceptionHandlerFeature>();
-                        if (error != null)
-                        {
-                            await context.Response.WriteAsync(error.Error.Message);
-                        }
-                    });
-                });
             }
+
+            app.ConfigureExceptionHandler();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
             app.UseMvc();
