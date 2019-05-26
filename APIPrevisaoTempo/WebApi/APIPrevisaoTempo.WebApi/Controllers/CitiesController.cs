@@ -45,7 +45,7 @@ namespace APIPrevisaoTempo.WebApi.Controllers
 
         [HttpGet]
         [Route("forecast/{customCode}")]
-        public ActionResult GetForecast(string customCode)
+        public ActionResult<CityForecastDTO> GetForecast(string customCode)
         {
             CityForecastDTO cityForecastDTO = this._externalCityService.GetCityForecast(customCode);
             return Ok(cityForecastDTO);

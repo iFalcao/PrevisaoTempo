@@ -85,6 +85,22 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
         }
 
         [Fact]
+        public void GetForecast_WhenCalled_ReturnsOkAndCityForecastDTO()
+        {
+            // Arrange
+            this._externalServiceMock.Setup(svc => svc.GetCityForecast(It.IsAny<string>()))
+                .Returns(new CityForecastDTO());
+            CitiesController controller = this.GenerateCitiesController();
+
+            // Act
+            var okResult = controller.GetForecast("x12345");
+
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult.Result);
+            Assert.IsType<CityForecastDTO>((okResult.Result as OkObjectResult).Value);
+        }
+
+        [Fact]
         public void SearchCities_WhenCalledWithLessThan3CharactersString_ReturnsBadRequest()
         {
             // Arrange 
