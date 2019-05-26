@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using APIPrevisaoTempo.Common.Objects;
 using System.Linq;
+using System;
 
 namespace APIPrevisaoTempo.WebApi.Controllers
 {
@@ -52,6 +53,8 @@ namespace APIPrevisaoTempo.WebApi.Controllers
         [Route("search/{cityName}")]
         public ActionResult SearchCities(string cityName)
         {
+            if (cityName.Length < 3)
+                return BadRequest(new ArgumentException("O nome da cidade deve ter no mínimo 3 caracteres."));
             FoundCitiesDTO foundCities = this._externalCityService.SearchCitiesByName(cityName);
             var convertedCities = foundCities.list.Select(foundCity => _mapper.Map<CityDTO>(foundCity));
             return Ok(convertedCities);
