@@ -1,3 +1,15 @@
-<p>
-  forecast works!
-</p>
+<div class="mt-4">
+  <a [routerLink]="['/home']">
+    <i class="fa fa-arrow-circle-left"></i> Voltar Para tela inicial
+  </a>
+</div>
+<div class="mt-4">
+  <div [hidden]="!temperatureChart">
+    <canvas id="temperatureChart">{{ temperatureChart }}</canvas>
+  </div>
+</div>
+<div class="mt-4">
+  <div [hidden]="!humidityPressureChart">
+    <canvas id="humidityPressureChart">{{ humidityPressureChart }}</canvas>
+  </div>
+</div>
