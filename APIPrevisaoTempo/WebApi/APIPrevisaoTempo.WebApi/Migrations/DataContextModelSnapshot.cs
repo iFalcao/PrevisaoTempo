@@ -40,6 +40,9 @@ namespace APIPrevisaoTempo.WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomCode")
+                        .IsUnique();
+
                     b.ToTable("Cities");
                 });
 #pragma warning restore 612, 618

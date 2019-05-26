@@ -22,6 +22,12 @@ namespace APIPrevisaoTempo.WebApi.Migrations
                 {
                     table.PrimaryKey("PK_Cities", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cities_CustomCode",
+                table: "Cities",
+                column: "CustomCode",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIPrevisaoTempo.WebApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190525010432_InitialMigration")]
+    [Migration("20190526214623_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,9 @@ namespace APIPrevisaoTempo.WebApi.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomCode")
+                        .IsUnique();
 
                     b.ToTable("Cities");
                 });
