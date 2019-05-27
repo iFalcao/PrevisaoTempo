@@ -1,0 +1,39 @@
+<div [hidden]="!this.cityForecast" id="myCarousel" class="carousel slide mt-2" data-ride="carousel">
+  <div class="carousel-inner row w-100 mx-auto">
+    <div class="carousel-item col-md-4" *ngFor="let forecast of this.cityForecast.list; let index = index"
+      [class.active]="index == 0">
+      <div class="card">
+        <div class="card-header text-center">
+          <img [src]="'http://openweathermap.org/img/w/' +
+                        forecast.weather[0].icon +
+                        '.png'
+          " />
+          <div class="card-title">
+            {{this.formatDateToGraph(forecast.dt)}}
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            Temperatura: {{fixTemperature(forecast.main.temp)}} ºC
+            <br />
+            Ventos: {{forecast.wind.speed}} m/s
+            <br />
+            Pressão Atmosférica: {{forecast.main.pressure}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mt-4">
+        <a class="btn btn-outline-secondary mx-1 prev" href="javascript:void(0)" title="Previous">
+          <i class="fa fa-lg fa-chevron-left"></i>
+        </a>
+        <a class="btn btn-outline-secondary mx-1 next" href="javascript:void(0)" title="Next">
+          <i class="fa fa-lg fa-chevron-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

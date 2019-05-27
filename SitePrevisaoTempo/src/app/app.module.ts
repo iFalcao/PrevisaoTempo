@@ -14,6 +14,8 @@ import { CitySearchComponent } from './home/city-search/city-search.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { ForecastComponent } from './forecast/forecast.component';
+import { ForecastCarouselComponent } from './forecast/forecast-carousel/forecast-carousel.component';
+import { CommonService } from './_services/common.service';
 
 @NgModule({
    declarations: [
@@ -22,7 +24,8 @@ import { ForecastComponent } from './forecast/forecast.component';
       HeaderComponent,
       CityListComponent,
       CitySearchComponent,
-      ForecastComponent
+      ForecastComponent,
+      ForecastCarouselComponent
    ],
    imports: [
       BrowserModule,
@@ -34,7 +37,8 @@ import { ForecastComponent } from './forecast/forecast.component';
       AlertifyService,
       CityService,
       WeatherService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      CommonService
    ],
    bootstrap: [
       AppComponent
