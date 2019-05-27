@@ -6,9 +6,9 @@ Esse aplicativo possui um back-end em .NET Core 2.2 Web Api e o front-end em Ang
 
 ---------
 
-[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/architecture/APIPrevisaoTempo) para ver mais sobre o back-end.
+[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/master/APIPrevisaoTempo) para ver mais sobre o back-end.
 
-[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/architecture/SitePrevisaoTempo) para ver mais sobre o front-end.
+[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/master/SitePrevisaoTempo) para ver mais sobre o front-end.
 
 ## Rodando o projeto
 
@@ -31,8 +31,9 @@ Agora que você tem tudo baixado localmente, vamos rodar ambos os projetos. Para
 Para rodar a API, execute os seguintes comandos:
 
 ```terminal
-$ cd APIPrevisaoTempo
-$ dotnet run watch
+$ cd APIPrevisaoTempo\WebApi\APIPrevisaoTempo.WebApi
+$ dotnet ef database update
+$ dotnet watch run
 ```
 
 - O watch serve para que qualquer alteração realizada na API execute um reload e seja rodado o projeto atualizado
