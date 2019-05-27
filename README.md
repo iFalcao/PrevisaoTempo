@@ -6,9 +6,9 @@ Esse aplicativo possui um back-end em .NET Core 2.2 Web Api e o front-end em Ang
 
 ---------
 
-[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/architecture/APIPrevisaoTempo) para ver mais sobre o back-end.
+[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/master/APIPrevisaoTempo) para ver mais sobre o back-end.
 
-[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/architecture/SitePrevisaoTempo) para ver mais sobre o front-end.
+[Clique aqui](https://github.com/iFalcao/PrevisaoTempo/tree/master/SitePrevisaoTempo) para ver mais sobre o front-end.
 
 ## Rodando o projeto
 
