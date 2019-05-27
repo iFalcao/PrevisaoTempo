@@ -65,7 +65,13 @@ namespace APIPrevisaoTempo.UnitTests.Services
             // usado para verificar se existe cidade com esse nome na api externa
             this._externalService.Setup(svc => svc.SearchCitiesByName(It.IsAny<string>())).Returns(new FoundCitiesDTO
             {
-                count = 1
+                count = 1,
+                list = new List<FoundCityDTO>
+                {
+                    new FoundCityDTO {
+                        id = 43534
+                    }
+                }
             });
 
 
@@ -85,7 +91,7 @@ namespace APIPrevisaoTempo.UnitTests.Services
         }
 
         [Fact]
-        public void CreateCity_WhenCalledAndCityDoesntExistOnExternalApi_ReturnsException()
+        public void CreateCity_WhenCalledAndCityWithSameNameDoesntExistOnExternalApi_ReturnsException()
         {
             // Arrange
             // usado para verificar se existe cidade com esse nome na api externa, se retornado 0 não deve permitir cadastro
@@ -112,13 +118,59 @@ namespace APIPrevisaoTempo.UnitTests.Services
         }
 
         [Fact]
+        public void CreateCity_WhenCalledAndCityWithSameCustomCodeDoesntExistOnExternalApi_ReturnsException()
+        {
+            // Arrange
+            // usado para verificar se existe essa cidade na api externa, 
+            // nesse caso não existe nenhuma com o mesmo custom code e deve dar erro
+            this._externalService.Setup(svc => svc.SearchCitiesByName(It.IsAny<string>())).Returns(new FoundCitiesDTO
+            {
+                count = 1,
+                list = new List<FoundCityDTO>
+                {
+                    new FoundCityDTO {
+                        id = 234234234
+                    }
+                }
+            });
+
+
+            // Nesse teste, o repositório retorna uma cidade cadastrada e deve retornar erro
+            this._cityRepository.Setup(svc => svc
+                .Where(It.IsAny<System.Linq.Expressions.Expression<System.Func<City, bool>>>()))
+                .Returns(new List<City>().AsQueryable());
+
+            // Act
+            var exception = Record.Exception(() =>
+                this.GenerateCityService().CreateCity(new City
+                {
+                    Name = "Salvador",
+                    CustomCode = "43534",
+                    Country = "BR",
+                    Latitude = 975.435,
+                    Longitude = 975.435
+                })
+            );
+
+            // Assert
+            Assert.NotNull(exception);
+            Assert.IsType<ArgumentException>(exception);
+        }
+
+        [Fact]
         public void CreateCity_WhenCalledAndCityAlreadyExistsOnDb_ReturnsException()
         {
             // Arrange
             // Cidade existe na api externa
             this._externalService.Setup(svc => svc.SearchCitiesByName(It.IsAny<string>())).Returns(new FoundCitiesDTO
             {
-                count = 1
+                count = 1,
+                list = new List<FoundCityDTO>
+                {
+                    new FoundCityDTO {
+                        id = 43534
+                    }
+                }
             });
 
             // Nesse teste, o repositório retorna uma cidade cadastrada e deve retornar erro

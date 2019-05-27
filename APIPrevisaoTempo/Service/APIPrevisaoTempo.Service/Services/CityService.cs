@@ -50,7 +50,8 @@ namespace APIPrevisaoTempo.Application.Services
         /// <returns></returns>
         private bool CityExistsOnExternalApi(City city)
         {
-            return _externalCityService.SearchCitiesByName(city.Name).count > 0;
+            var citiesWithSameName = _externalCityService.SearchCitiesByName(city.Name);
+            return citiesWithSameName.count > 0 && citiesWithSameName.list.Any(cty => cty.id.ToString() == city.CustomCode);
         }
 
         /// <summary>
