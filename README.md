@@ -31,9 +31,9 @@ Agora que você tem tudo baixado localmente, vamos rodar ambos os projetos. Para
 Para rodar a API, execute os seguintes comandos:
 
 ```terminal
-$ cd APIPrevisaoTempo
+$ cd APIPrevisaoTempo\WebApi\APIPrevisaoTempo.WebApi
 $ dotnet ef database update
-$ dotnet run watch
+$ dotnet watch run
 ```
 
 - O watch serve para que qualquer alteração realizada na API execute um reload e seja rodado o projeto atualizado
