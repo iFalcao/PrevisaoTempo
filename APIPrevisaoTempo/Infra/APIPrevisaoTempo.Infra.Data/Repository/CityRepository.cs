@@ -1,11 +1,12 @@
-﻿using APIPrevisaoTempo.WebApi.Data;
-using APIPrevisaoTempo.WebApi.Models;
+﻿using APIPrevisaoTempo.Domain.Models;
+using APIPrevisaoTempo.Infra.Data.Context;
+using APIPrevisaoTempo.Infra.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace APIPrevisaoTempo.WebApi.Data.Repositories
+namespace APIPrevisaoTempo.Infra.Data.Repositoriy
 {
     public class CityRepository : ICityRepository
     {

@@ -1,8 +1,8 @@
-﻿using APIPrevisaoTempo.WebApi.Models;
+﻿using APIPrevisaoTempo.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace APIPrevisaoTempo.WebApi.Data.Mapping
+namespace APIPrevisaoTempo.Infra.Data.Mapping
 {
     public class CityConfig : IEntityTypeConfiguration<City>
     {

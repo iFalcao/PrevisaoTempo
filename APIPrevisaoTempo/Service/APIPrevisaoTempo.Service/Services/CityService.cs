@@ -1,11 +1,11 @@
-﻿using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
-using APIPrevisaoTempo.WebApi.Models;
-using APIPrevisaoTempo.WebApi.Data.Repositories;
+﻿using APIPrevisaoTempo.Infra.CrossCutting.OpenWeatherProxy.Services;
+using APIPrevisaoTempo.Domain.Models;
+using APIPrevisaoTempo.Infra.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace APIPrevisaoTempo.WebApi.Services
+namespace APIPrevisaoTempo.Application.Services
 {
     public class CityService : ICityService
     {

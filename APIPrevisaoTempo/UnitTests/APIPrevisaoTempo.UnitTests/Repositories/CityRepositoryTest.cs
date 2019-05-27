@@ -1,12 +1,9 @@
-﻿using APIPrevisaoTempo.WebApi.Data;
-using APIPrevisaoTempo.WebApi.Data.Repositories;
-using APIPrevisaoTempo.WebApi.Models;
+﻿using APIPrevisaoTempo.Domain.Models;
+using APIPrevisaoTempo.Infra.Data.Context;
+using APIPrevisaoTempo.Infra.Data.Repositoriy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace APIPrevisaoTempo.UnitTests.Repositories

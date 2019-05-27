@@ -1,9 +1,6 @@
 ﻿using APIPrevisaoTempo.WebApi.Helpers;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace APIPrevisaoTempo.UnitTests
 {

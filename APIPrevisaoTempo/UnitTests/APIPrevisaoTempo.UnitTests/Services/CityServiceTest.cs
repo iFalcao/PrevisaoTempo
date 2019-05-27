@@ -1,8 +1,8 @@
-﻿using APIPrevisaoTempo.Common.Objects;
-using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
-using APIPrevisaoTempo.WebApi.Data.Repositories;
-using APIPrevisaoTempo.WebApi.Models;
-using APIPrevisaoTempo.WebApi.Services;
+﻿using APIPrevisaoTempo.Application.Services;
+using APIPrevisaoTempo.Infra.CrossCutting.Objects;
+using APIPrevisaoTempo.Domain.Models;
+using APIPrevisaoTempo.Infra.CrossCutting.OpenWeatherProxy.Services;
+using APIPrevisaoTempo.Infra.Data.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -56,11 +56,11 @@ namespace APIPrevisaoTempo.UnitTests.Services
             {
                 Id = 1
             });
-            
+
             // usado para verificar existência de cidades cadastradas com o mesmo custom code e portanto deve retornar 0
             this._cityRepository.Setup(svc => svc
                 .Where(It.IsAny<System.Linq.Expressions.Expression<System.Func<City, bool>>>()))
-                .Returns(new List<City>().AsQueryable()); 
+                .Returns(new List<City>().AsQueryable());
 
             // usado para verificar se existe cidade com esse nome na api externa
             this._externalService.Setup(svc => svc.SearchCitiesByName(It.IsAny<string>())).Returns(new FoundCitiesDTO
@@ -95,7 +95,7 @@ namespace APIPrevisaoTempo.UnitTests.Services
             });
 
             // Act
-            var exception = Record.Exception(() => 
+            var exception = Record.Exception(() =>
                 this.GenerateCityService().CreateCity(new City
                 {
                     Name = "Salvador",

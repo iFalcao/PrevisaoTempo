@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace APIPrevisaoTempo.WebApi.Migrations
+namespace APIPrevisaoTempo.Infra.Data.Migrations
 {
     public partial class InitialMigration : Migration
     {

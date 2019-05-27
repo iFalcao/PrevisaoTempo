@@ -1,20 +1,18 @@
-﻿using APIPrevisaoTempo.External.OpenWeatherProxy.Configuration;
-using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
-using APIPrevisaoTempo.WebApi.Data;
-using APIPrevisaoTempo.WebApi.Data.Repositories;
+﻿using APIPrevisaoTempo.Application.Services;
+using APIPrevisaoTempo.Infra.CrossCutting.OpenWeatherProxy.Configuration;
+using APIPrevisaoTempo.Infra.CrossCutting.OpenWeatherProxy.Services;
+using APIPrevisaoTempo.Infra.Data.Context;
+using APIPrevisaoTempo.Infra.Data.Repositoriy;
+using APIPrevisaoTempo.Infra.Data.Repository;
 using APIPrevisaoTempo.WebApi.Helpers;
-using APIPrevisaoTempo.WebApi.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Net;
 
 namespace APIPrevisaoTempo.WebApi
 {
@@ -48,7 +46,7 @@ namespace APIPrevisaoTempo.WebApi
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (!env.IsDevelopment())
-            { 
+            {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

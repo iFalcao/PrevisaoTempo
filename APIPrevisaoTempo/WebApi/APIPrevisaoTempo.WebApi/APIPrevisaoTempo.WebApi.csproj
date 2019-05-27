@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -16,8 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\APIPrevisaoTempo.Common\APIPrevisaoTempo.Common.csproj" />
-    <ProjectReference Include="..\..\External\APIPrevisaoTempo.External.OpenWeatherProxy\APIPrevisaoTempo.External.OpenWeatherProxy.csproj" />
+    <ProjectReference Include="..\..\Domain\APIPrevisaoTempo.Domain\APIPrevisaoTempo.Domain.csproj" />
+    <ProjectReference Include="..\..\Infra\APIPrevisaoTempo.CrossCutting\APIPrevisaoTempo.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\..\Infra\APIPrevisaoTempo.Infra.Data\APIPrevisaoTempo.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\Service\APIPrevisaoTempo.Service\APIPrevisaoTempo.Application.csproj" />
   </ItemGroup>
 
 </Project>

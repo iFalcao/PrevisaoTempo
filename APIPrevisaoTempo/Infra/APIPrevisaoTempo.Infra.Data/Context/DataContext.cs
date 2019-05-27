@@ -1,8 +1,8 @@
-﻿using APIPrevisaoTempo.WebApi.Data.Mapping;
-using APIPrevisaoTempo.WebApi.Models;
+﻿using APIPrevisaoTempo.Infra.Data.Mapping;
+using APIPrevisaoTempo.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace APIPrevisaoTempo.WebApi.Data
+namespace APIPrevisaoTempo.Infra.Data.Context
 {
     public class DataContext : DbContext
     {

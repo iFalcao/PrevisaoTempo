@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\APIPrevisaoTempo.Domain\APIPrevisaoTempo.Domain.csproj" />
+    <ProjectReference Include="..\..\Infra\APIPrevisaoTempo.CrossCutting\APIPrevisaoTempo.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\..\Infra\APIPrevisaoTempo.Infra.Data\APIPrevisaoTempo.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>

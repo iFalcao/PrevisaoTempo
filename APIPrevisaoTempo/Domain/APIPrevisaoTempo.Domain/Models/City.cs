@@ -1,4 +1,4 @@
-﻿namespace APIPrevisaoTempo.WebApi.Models
+﻿namespace APIPrevisaoTempo.Domain.Models
 {
     public class City
     {

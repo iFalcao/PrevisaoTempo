@@ -1,18 +1,17 @@
-﻿using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
+﻿using APIPrevisaoTempo.Application.Services;
+using APIPrevisaoTempo.Infra.CrossCutting.Objects;
+using APIPrevisaoTempo.Domain.Models;
+using APIPrevisaoTempo.Infra.CrossCutting.OpenWeatherProxy.Services;
 using APIPrevisaoTempo.WebApi.Controllers;
-using APIPrevisaoTempo.WebApi.Services;
+using APIPrevisaoTempo.WebApi.DTOs;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 using Moq;
 using System.Collections.Generic;
-using APIPrevisaoTempo.WebApi.Models;
 using System.Linq;
-using APIPrevisaoTempo.WebApi.DTOs;
 using System.Net;
-using APIPrevisaoTempo.Common.Objects;
-using System;
+using Xunit;
 
 namespace APIPrevisaoTempo.UnitTests.Controllers
 {
@@ -154,7 +153,7 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
 
 
 
-        private CitiesController GenerateCitiesController(Mock<ICityService> mockCityService = null, 
+        private CitiesController GenerateCitiesController(Mock<ICityService> mockCityService = null,
             Mock<IExternalCityService> mockExternalService = null)
         {
             return new CitiesController(mockCityService?.Object ?? _cityServiceMock.Object,

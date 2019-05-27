@@ -1,6 +1,6 @@
-﻿using APIPrevisaoTempo.Common.Objects;
+﻿using APIPrevisaoTempo.Infra.CrossCutting.Objects;
 using APIPrevisaoTempo.WebApi.DTOs;
-using APIPrevisaoTempo.WebApi.Models;
+using APIPrevisaoTempo.Domain.Models;
 using AutoMapper;
 using System.Collections.Generic;
 

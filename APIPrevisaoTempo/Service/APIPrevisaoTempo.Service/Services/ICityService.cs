@@ -1,7 +1,7 @@
-﻿using APIPrevisaoTempo.WebApi.Models;
+﻿using APIPrevisaoTempo.Domain.Models;
 using System.Collections.Generic;
 
-namespace APIPrevisaoTempo.WebApi.Services
+namespace APIPrevisaoTempo.Application.Services
 {
     public interface ICityService
     {

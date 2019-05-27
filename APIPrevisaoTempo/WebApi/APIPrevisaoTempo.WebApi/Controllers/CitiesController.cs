@@ -1,11 +1,11 @@
 ﻿using APIPrevisaoTempo.WebApi.DTOs;
-using APIPrevisaoTempo.WebApi.Models;
-using APIPrevisaoTempo.WebApi.Services;
-using APIPrevisaoTempo.External.OpenWeatherProxy.Services;
+using APIPrevisaoTempo.Domain.Models;
+using APIPrevisaoTempo.Application.Services;
+using APIPrevisaoTempo.Infra.CrossCutting.OpenWeatherProxy.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using APIPrevisaoTempo.Common.Objects;
+using APIPrevisaoTempo.Infra.CrossCutting.Objects;
 using System.Linq;
 using System;
 
