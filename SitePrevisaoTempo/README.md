@@ -9,3 +9,5 @@ Execute `ng serve` para rodar o servidor de desenvolvimento. Navegue até `http:
 ## Testes unitários
 
 Execute `ng test` para rodar os testes unitários via [Karma](https://karma-runner.github.io).
+
+* Caso não deseje abrir o navegador automaticamente para visualizar os erros, execute o comando: `ng test --browsers=ChromeHeadless`

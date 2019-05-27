@@ -45,7 +45,7 @@ describe('CityService', () => {
     });
   });
 
-  fdescribe('#insertCity', () => {
+  describe('#insertCity', () => {
     it('should return an Observable<City> with same city', () => {
       const dummyCity = {
         name: 'Salvador',
