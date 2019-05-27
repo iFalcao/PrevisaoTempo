@@ -4,6 +4,13 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ForecastComponent } from './forecast.component';
+import { HeaderComponent } from '../header/header.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { HomeComponent } from '../home/home.component';
+import { CityListComponent } from '../home/city-list/city-list.component';
+import { CitySearchComponent } from '../home/city-search/city-search.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ForecastComponent', () => {
   let component: ForecastComponent;
@@ -11,9 +18,20 @@ describe('ForecastComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ForecastComponent ]
+      imports: [
+        AppRoutingModule,
+        FormsModule,
+        HttpClientTestingModule
+      ],
+      declarations: [
+        ForecastComponent,
+        HeaderComponent,
+        HomeComponent,
+        CityListComponent,
+        CitySearchComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

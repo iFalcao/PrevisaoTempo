@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { CitySearchComponent } from './city-search.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CitySearchComponent', () => {
   let component: CitySearchComponent;
@@ -11,9 +13,14 @@ describe('CitySearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CitySearchComponent ]
-    })
-    .compileComponents();
+      imports: [
+        FormsModule,
+        HttpClientTestingModule
+      ],
+      declarations: [
+        CitySearchComponent
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
