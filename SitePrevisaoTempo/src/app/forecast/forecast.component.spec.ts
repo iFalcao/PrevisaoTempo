@@ -11,6 +11,7 @@ import { CityListComponent } from '../home/city-list/city-list.component';
 import { CitySearchComponent } from '../home/city-search/city-search.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ForecastCarouselComponent } from './forecast-carousel/forecast-carousel.component';
 
 describe('ForecastComponent', () => {
   let component: ForecastComponent;
@@ -28,7 +29,8 @@ describe('ForecastComponent', () => {
         HeaderComponent,
         HomeComponent,
         CityListComponent,
-        CitySearchComponent
+        CitySearchComponent,
+        ForecastCarouselComponent
       ]
     })
       .compileComponents();

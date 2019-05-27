@@ -10,6 +10,7 @@ import { ForecastComponent } from '../forecast/forecast.component';
 import { CityListComponent } from '../home/city-list/city-list.component';
 import { CitySearchComponent } from '../home/city-search/city-search.component';
 import { FormsModule } from '@angular/forms';
+import { ForecastCarouselComponent } from '../forecast/forecast-carousel/forecast-carousel.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -26,7 +27,8 @@ describe('HeaderComponent', () => {
         HomeComponent,
         ForecastComponent,
         CityListComponent,
-        CitySearchComponent
+        CitySearchComponent,
+        ForecastCarouselComponent
       ]
     })
       .compileComponents();
