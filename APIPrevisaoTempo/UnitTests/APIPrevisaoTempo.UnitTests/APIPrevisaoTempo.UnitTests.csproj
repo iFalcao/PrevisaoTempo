@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Application\APIPrevisaoTempo.Application\APIPrevisaoTempo.Application.csproj" />
     <ProjectReference Include="..\..\Domain\APIPrevisaoTempo.Domain\APIPrevisaoTempo.Domain.csproj" />
     <ProjectReference Include="..\..\Infra\APIPrevisaoTempo.CrossCutting\APIPrevisaoTempo.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\..\Infra\APIPrevisaoTempo.Infra.Data\APIPrevisaoTempo.Infra.Data.csproj" />
-    <ProjectReference Include="..\..\Service\APIPrevisaoTempo.Service\APIPrevisaoTempo.Application.csproj" />
     <ProjectReference Include="..\..\WebApi\APIPrevisaoTempo.WebApi\APIPrevisaoTempo.WebApi.csproj" />
   </ItemGroup>
 
