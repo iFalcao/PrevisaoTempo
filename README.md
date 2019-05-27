@@ -32,6 +32,7 @@ Para rodar a API, execute os seguintes comandos:
 
 ```terminal
 $ cd APIPrevisaoTempo
+$ dotnet ef database update
 $ dotnet run watch
 ```
 
