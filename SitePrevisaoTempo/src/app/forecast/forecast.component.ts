@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { WeatherService } from '../_services/weather/weather.service';
 import { AlertifyService } from '../_services/alertify/alertify.service';
 import { Chart } from 'chart.js';
+import { Forecast, CityForecast } from '../_models/city-forecast.ts';
 
 @Component({
   selector: 'app-forecast',
@@ -10,23 +11,22 @@ import { Chart } from 'chart.js';
   styleUrls: ['./forecast.component.css']
 })
 export class ForecastComponent implements OnInit {
-  forecastInfo: any;
+  forecastInfo: CityForecast;
   temperatureChart: any;
   humidityPressureChart: any;
   cityCustomCode: string;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private weatherService: WeatherService,
     private alertify: AlertifyService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.cityCustomCode = this.route.snapshot.paramMap.get('customCode');
 
     this.weatherService.getForecast(this.cityCustomCode).subscribe(
-      (forecast: any) => {
+      (forecast: CityForecast) => {
         this.forecastInfo = forecast;
         this.createTemperatureChart();
         this.createHumidityPressureChart();
@@ -38,8 +38,8 @@ export class ForecastComponent implements OnInit {
   }
 
   createHumidityPressureChart() {
-    let humidity = this.forecastInfo.list.map(res => res.main.humidity);
-    let pressure = this.forecastInfo.list.map(res => res.main.pressure);
+    const humidity = this.forecastInfo.list.map(res => res.main.humidity);
+    const pressure = this.forecastInfo.list.map(res => res.main.pressure);
 
     this.humidityPressureChart = new Chart('humidityPressureChart', {
       type: 'bar',
@@ -73,10 +73,10 @@ export class ForecastComponent implements OnInit {
   }
 
   createTemperatureChart() {
-    let temp_max = this.forecastInfo.list.map(res =>
+    const tempMax = this.forecastInfo.list.map(res =>
       (res.main.temp_max - 273.15).toFixed(2)
     );
-    let temp_min = this.forecastInfo.list.map(res =>
+    const tempMin = this.forecastInfo.list.map(res =>
       (res.main.temp_min - 273.15).toFixed(2)
     );
 
@@ -86,13 +86,13 @@ export class ForecastComponent implements OnInit {
         labels: this.getDates(),
         datasets: [
           {
-            data: temp_max,
+            data: tempMax,
             borderColor: '#3cba9f',
             fill: true,
             label: 'Temperatura Máxima (ºC)'
           },
           {
-            data: temp_min,
+            data: tempMin,
             borderColor: '#ffcc00',
             fill: true,
             label: 'Temperatura Mínima (ºC)'
