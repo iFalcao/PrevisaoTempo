@@ -17,6 +17,10 @@ A estruturação de arquivos foi feita da seguinte forma:
  3. **InfraStructure** : é dividida em duas sub-camadas
     - **Data**: realiza a persistência com o banco de dados, no nosso caso utilizando EF Core & SQLite. Utilização do Repository Pattern para prover abstração do tratamento de dados.
     - **Cross-Cutting**: uma camada a parte que não obedece a hierarquia de camada. Como o próprio nome diz, essa camada cruza toda a hierarquia. Responsável por consumir a API externa (OpenWeather).
+    
+##### Open Weather API 
+
+Localizada no Infra.CrossCutting está organizada na pasta OpenWeatherProxy. Possui uma classe abstrata que fornece o HttpClient (este deve ser único, [veja mais aqui](https://docs.microsoft.com/pt-br/dotnet/api/system.net.http.httpclient?view=netframework-4.8)). Possui também uma classe de configuração com informações recuperadas no Startup através do arquivo de configuração (`appsettings.json`). 
 
 ---
 
