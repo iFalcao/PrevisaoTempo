@@ -3,7 +3,8 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { WeatherService } from '../_services/weather/weather.service';
 import { AlertifyService } from '../_services/alertify/alertify.service';
 import { Chart } from 'chart.js';
-import { Forecast, CityForecast } from '../_models/city-forecast.ts';
+import { Forecast, CityForecast } from '../_models/city-forecast';
+declare let $: any;
 
 @Component({
   selector: 'app-forecast',
@@ -23,11 +24,51 @@ export class ForecastComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    $(function () {
+      'use strict';
+      // Auto-scroll
+      $('#myCarousel').carousel({
+        interval: 5000
+      });
+
+      // Control buttons
+      $('.next').click(function () {
+        $('.carousel').carousel('next');
+        return false;
+      });
+      $('.prev').click(function () {
+        $('.carousel').carousel('prev');
+        return false;
+      });
+
+      // On carousel scroll
+      $('#myCarousel').on('slide.bs.carousel', function (e) {
+        const $e = $(e.relatedTarget);
+        const idx = $e.index();
+        const itemsPerSlide = 3;
+        const totalItems = $('.carousel-item').length;
+        if (idx >= totalItems - (itemsPerSlide - 1)) {
+          const it = itemsPerSlide -
+            (totalItems - idx);
+          for (let i = 0; i < it; i++) {
+            // append slides to end
+            if (e.direction == 'left') {
+              $(
+                '.carousel-item').eq(i).appendTo('.carousel-inner');
+            } else {
+              $('.carousel-item').eq(0).appendTo('.carousel-inner');
+            }
+          }
+        }
+      });
+    });
+
     this.cityCustomCode = this.route.snapshot.paramMap.get('customCode');
 
     this.weatherService.getForecast(this.cityCustomCode).subscribe(
       (forecast: CityForecast) => {
         this.forecastInfo = forecast;
+        console.log(this.forecastInfo);
         this.createTemperatureChart();
         this.createHumidityPressureChart();
       },
@@ -116,13 +157,13 @@ export class ForecastComponent implements OnInit {
     this.forecastInfo.list
       .map(res => res.dt)
       .forEach((res: number) => {
-        let jsDate = new Date(res * 1000);
-        weatherDates.push(this.formatDateToGraph(jsDate));
+        weatherDates.push(this.formatDateToGraph(res));
       });
     return weatherDates;
   }
 
-  formatDateToGraph(jsDate: any): string {
+  formatDateToGraph(jsDateAsNumber: number): string {
+    const jsDate = new Date(jsDateAsNumber * 1000);
     return (
       jsDate.getDate() +
       '/' +
