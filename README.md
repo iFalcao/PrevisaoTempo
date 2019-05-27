@@ -16,11 +16,11 @@ Passos iniciais:
 
 1. Verifique se possui o .NET Core 2.2 SDK instalado, caso não possua deve baixar através desse [link](https://dotnet.microsoft.com/download/dotnet-core/2.2).
 
-- você pode verificar se possui o .net core instalado com o comando `dotnet --version`
+    - você pode verificar se possui o .net core instalado com o comando `dotnet --version`
 
 2. Verifique se possui o NodeJS instalado, caso não possua deve baixar através desse [link](https://nodejs.org/en/download/).
 
-- você pode verificar se possui o node instalado (e consequentemente o NPM) com o comando `npm -v`
+    - você pode verificar se possui o node instalado (e consequentemente o NPM) com o comando `npm -v`
 
 3. Abra um terminal na pasta que deseja clonar o projeto e rode o seguinte comando: `git clone https://github.com/iFalcao/PrevisaoTempo` .
 

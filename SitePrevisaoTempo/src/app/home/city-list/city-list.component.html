@@ -10,13 +10,11 @@
             {{ city.name }}{{ city.country ? ', ' + city.country : '' }}
           </h5>
           <p class="card-text">
-            <img
-              [src]="
+            <img [src]="
                 'http://openweathermap.org/images/flags/' +
                 city.country.toLowerCase() +
                 '.png'
-              "
-            />
+              " />
             <br />
             <span *ngIf="city.latitude" class="geo-information">
               <i class="fa fa-map-marker"></i>
@@ -33,10 +31,7 @@
               </span>
             </span>
           </p>
-          <a
-            class="btn btn-primary"
-            [routerLink]="['/forecast', city.customCode]"
-          >
+          <a class="btn btn-info" [routerLink]="['/forecast', city.customCode]">
             PREVISÃO <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
