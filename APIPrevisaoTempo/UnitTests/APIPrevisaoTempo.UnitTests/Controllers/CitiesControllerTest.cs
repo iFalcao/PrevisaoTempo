@@ -73,11 +73,11 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
             CitiesController controller = this.GenerateCitiesController();
 
             // Act
-            var objectResult = (ObjectResult)controller.Post(mockedCityToDTO);
+            var objectResult = controller.Post(mockedCityToDTO).Result as ObjectResult;
             var returnedCity = objectResult.Value as CityDTO;
 
             // Assert
-            Assert.Equal(objectResult.StatusCode.Value, (int)HttpStatusCode.Created);
+            Assert.Equal(objectResult.StatusCode, (int)HttpStatusCode.Created);
             Assert.Equal("Salvador", returnedCity.Name);
             Assert.Equal("43534", returnedCity.CustomCode);
             Assert.Equal("BR", returnedCity.Country);
@@ -109,8 +109,7 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
             var badRequestResult = controller.SearchCities("ab");
 
             // Assert
-            Assert.IsType<BadRequestObjectResult>(badRequestResult);
-            Assert.Equal(400, (int)(badRequestResult as BadRequestObjectResult).StatusCode);
+            Assert.Equal(400, (badRequestResult.Result as ObjectResult).StatusCode);
         }
 
         [Theory]
@@ -141,10 +140,10 @@ namespace APIPrevisaoTempo.UnitTests.Controllers
 
             // Act
             var okResult = controller.SearchCities(cityName);
-            var foundCitiesDTO = (okResult as OkObjectResult).Value as List<CityDTO>;
+            var foundCitiesDTO = (okResult.Result as OkObjectResult).Value as List<CityDTO>;
 
             // Assert
-            Assert.IsType<OkObjectResult>(okResult);
+            Assert.IsType<OkObjectResult>(okResult.Result);
             Assert.True(foundCitiesDTO.Count == 1);
             Assert.All(foundCitiesDTO, foundCityDto =>
                 Assert.Equal(cityName, foundCityDto.Name)

@@ -36,12 +36,14 @@ namespace APIPrevisaoTempo.WebApi.Controllers
 
         // POST api/cities
         [HttpPost]
-        public ActionResult Post(CityDTO newCity)
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public ActionResult<CityDTO> Post(CityDTO newCity)
         {
             var mappedCityDomain = _mapper.Map<City>(newCity);
             var insertedCity = this._cityService.CreateCity(mappedCityDomain);
 
-            return StatusCode(201, _mapper.Map<CityDTO>(insertedCity));
+            return CreatedAtAction("Post", _mapper.Map<CityDTO>(insertedCity));
         }
 
         [HttpGet]
@@ -54,10 +56,13 @@ namespace APIPrevisaoTempo.WebApi.Controllers
 
         [HttpGet]
         [Route("search/{cityName}")]
-        public ActionResult SearchCities(string cityName)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult<List<CityDTO>> SearchCities(string cityName)
         {
-            if (cityName.Length < 3)
+            if (string.IsNullOrWhiteSpace(cityName) || cityName.Length < 3)
                 return BadRequest(new ArgumentException("O nome da cidade deve ter no mínimo 3 caracteres."));
+
             FoundCitiesDTO foundCities = this._externalCityService.SearchCitiesByName(cityName);
             var convertedCities = foundCities.list
                 .Select(foundCity => _mapper.Map<CityDTO>(foundCity))
